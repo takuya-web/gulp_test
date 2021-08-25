@@ -1,0 +1,38 @@
+$font_color: gray;
+
+h1 {
+  font-size: 18px;
+}
+
+h2 {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.p-document {
+  & p {
+    color: $font_color;
+    font-size: 10px;
+  }
+}
+
+.p-document {
+  & a {
+    color: $font_color;
+    font-size: 10px;
+  }
+}
+
+.p-sample {
+  color: red;
+}
+
+//test
+.sample-box {
+  display: flex;
+  border-radius: 10px;
+}
+
+.sample-box {
+  transition: all .4s;
+}

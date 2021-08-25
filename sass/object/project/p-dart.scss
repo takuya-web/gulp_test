@@ -1,0 +1,44 @@
+.p-dart {
+  color: red;
+}
+
+
+//mqpackerテスト
+div.box1{
+  font-size: 38px;
+  @media only screen and (max-width: 1216px){
+      font-size: 35px;
+  }
+  @media only screen and (max-width: 980px){
+      font-size: 28px;
+  }
+  @media only screen and (max-width: 768px){
+      font-size: 26px;
+  }
+}
+
+div.box2{
+  margin-bottom: 100px;
+  @media only screen and (max-width: 1216px){
+      margin-bottom: 80px;
+  }
+  @media only screen and (max-width: 980px){
+      margin-bottom: 50px;
+  }
+  @media only screen and (max-width: 768px){
+      margin-bottom: 30px;
+  }
+}
+
+div.box3{
+  padding: 50px;
+  @media only screen and (max-width: 1216px){
+      padding: 40px;
+  }
+  @media only screen and (max-width: 980px){
+      padding: 35px;
+  }
+  @media only screen and (max-width: 768px){
+      padding: 30px;
+  }
+}

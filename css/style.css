@@ -1,0 +1,93 @@
+h1 {
+  font-size: 18px;
+}
+
+h2 {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.p-document p {
+  color: gray;
+  font-size: 10px;
+}
+
+.p-document a {
+  color: gray;
+  font-size: 10px;
+}
+
+.p-sample {
+  color: red;
+}
+
+.sample-box {
+  display: -webkit-flex;
+  display: -moz-box;
+  display: flex;
+  border-radius: 10px;
+}
+
+.sample-box {
+  transition: all 0.4s;
+}
+
+.p-dart {
+  color: red;
+}
+
+div.box1 {
+  font-size: 38px;
+}
+
+div.box2 {
+  margin-bottom: 100px;
+}
+
+div.box3 {
+  padding: 50px;
+}
+
+/* --------------------------------------------------------
+foundation
+-------------------------------------------------------- */
+/* --------------------------------------------------------
+layout
+-------------------------------------------------------- */
+/* --------------------------------------------------------
+project
+-------------------------------------------------------- */
+@media only screen and (max-width: 1216px) {
+  div.box1 {
+    font-size: 35px;
+  }
+  div.box2 {
+    margin-bottom: 80px;
+  }
+  div.box3 {
+    padding: 40px;
+  }
+}
+@media only screen and (max-width: 980px) {
+  div.box1 {
+    font-size: 28px;
+  }
+  div.box2 {
+    margin-bottom: 50px;
+  }
+  div.box3 {
+    padding: 35px;
+  }
+}
+@media only screen and (max-width: 768px) {
+  div.box1 {
+    font-size: 26px;
+  }
+  div.box2 {
+    margin-bottom: 30px;
+  }
+  div.box3 {
+    padding: 30px;
+  }
+}
+/*# sourceMappingURL=style.css.map */
