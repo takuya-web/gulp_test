@@ -11,7 +11,7 @@
 //---------------------------------------------------------
 const gulp = require('gulp');
 const { src, dest, watch, series, parallel } = require( 'gulp' );
-/* 
+/*
 src      =>  参照先指定
 dest     =>  出力先指定
 watch    =>  ファイル監視
@@ -36,6 +36,7 @@ const destPath = {
 const watchPath = {
   'scss': './sass/**/*.scss',
   'php' : './**/*.php',
+  'js'  : './**/*.js'
 }
 
 //---------------------------------------------------------
@@ -99,21 +100,25 @@ const browserSyncReload = (done) => {
   done();
 }
 
-//watchするPHPファイル
+//PHPファイル監視
 const phpWatch = () => {
   return src( watchPath.php )
 }
+const jsWatch = () => {
+  return src( watchPath.js )
+}
 
-//watch
+//watchタスク
 const watchFiles = () => {
   watch( watchPath.scss, series( scssCompile ))
   watch( watchPath.php, series( phpWatch, browserSyncReload ))
+  watch( watchPath.js, series( jsWatch, browserSyncReload ))
 }
 
 //---------------------------------------------------------
 //  モジュール作成
 //---------------------------------------------------------
 exports.default = series(
-  parallel( phpWatch, scssCompile ),
+  parallel( phpWatch, jsWatch, scssCompile ),
   parallel( watchFiles , browserSyncFunc )
 );

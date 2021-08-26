@@ -8,7 +8,7 @@
 </head>
 <body>
   <articl class="p-document">
-    <a class="p-sampleBtn" href="<?php echo get_page_link('sample'); ?>" target="_blank">sample</a>
+    <a class="p-sampleBtn" href="<?php echo get_page_link(5); ?>" target="_blank">sample</a>
     <h1>ここまでの作業</h1>
     <ul>
     <li>
