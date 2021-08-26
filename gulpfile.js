@@ -25,17 +25,17 @@ parallel =>  並列処理
 //参照元パス
 const srcPath = {
   'scss': './sass/style.scss',
-  'php' : './**/*.php'
+  'php' : './**/*.php',
 }
 //出力先パス
 const destPath = {
-  'css': './css/',
-  'php': '/'
+  'css' : './css/',
+  'php' : '/',
 }
 //監視パス
 const watchPath = {
   'scss': './sass/**/*.scss',
-  'php' : './**/*.php'
+  'php' : './**/*.php',
 }
 
 //---------------------------------------------------------
@@ -103,15 +103,11 @@ const browserSyncReload = (done) => {
 const phpWatch = () => {
   return src( watchPath.php )
 }
-//watchするSCSSファイル
-const scssWatch = () => {
-  return src( watchPath.scss )
-}
+
 //watch
 const watchFiles = () => {
   watch( watchPath.scss, series( scssCompile ))
   watch( watchPath.php, series( phpWatch, browserSyncReload ))
-  watch( watchPath.scss, series( phpWatch, browserSyncReload ))
 }
 
 //---------------------------------------------------------

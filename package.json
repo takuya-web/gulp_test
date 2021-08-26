@@ -20,7 +20,8 @@
     "gulp-postcss": "^9.0.0",
     "gulp-sass": "^5.0.0",
     "gulp-tinypng-compress": "^1.2.5",
-    "minimist": "^1.2.5"
+    "minimist": "^1.2.5",
+    "tinify": "^1.6.0-beta.2"
   },
   "browserslist": [
     "last 2 version",
