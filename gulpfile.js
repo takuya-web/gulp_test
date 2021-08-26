@@ -1,3 +1,6 @@
+//起動コマンド
+//$ npx gulp --domain "サイトのドメイン"
+
 //---------------------------------------------------------
 //  モード
 //---------------------------------------------------------
@@ -27,6 +30,7 @@ const srcPath = {
 //出力先パス
 const destPath = {
   'css': './css/',
+  'php': '/'
 }
 //監視パス
 const watchPath = {
@@ -45,15 +49,14 @@ const autoprefixer = require( 'gulp-autoprefixer' );     //ベンダープレフ
 const postcss = require( 'gulp-postcss' );               //Node.js製、CSS操作プラグインのフレームワーク
 const mqpacker = require( 'css-mqpacker' );              //メディアクエリの整理
 const browserSync = require( 'browser-sync' );           //ブラウザシンク
-const connect = require( 'gulp-connect-php' );           //gulpでPHPを使う為のプラグイン
 const minimist = require( 'minimist' );                  //コマンドラインパーサー
 
 //---------------------------------------------------------
 //  関数定義
 //---------------------------------------------------------
-//scss
+//scssコンパイル
 const scssCompile = () => {
-  return gulp.src( srcPath.scss, {
+  return src( srcPath.scss, {
     sourcemaps: true, //init
     })
     //エラーが出ても処理継続
@@ -67,7 +70,7 @@ const scssCompile = () => {
     //メディアクエリの整理
     .pipe( postcss([mqpacker()]))
     //出力設定
-    .pipe( gulp.dest ( destPath.css, {
+    .pipe( dest( destPath.css, {
       sourcemaps: './'  //write
     }))
     //修正部分だけ反映
@@ -88,25 +91,33 @@ const browserSyncFunc = () => {
 const browserSyncOption = {
   proxy: {
     target: options.domain
-  }
+  },
 }
 //リロードタスク
-const browserSyncReload = () => {
-  return browserSync.reload();
+const browserSyncReload = (done) => {
+  browserSync.reload();
+  done();
 }
 
-//watch
-const watchSass = () => {
-  gulp.watch( watchPath.scss, series( scssCompile ))
-  gulp.watch( destPath.css, series( browserSyncReload ))
+//watchするPHPファイル
+const phpWatch = () => {
+  return src( watchPath.php )
 }
-const watchPhp = () => {
-  gulp.watch( watchPath.php, series( browserSyncReload ))
+//watchするSCSSファイル
+const scssWatch = () => {
+  return src( watchPath.scss )
+}
+//watch
+const watchFiles = () => {
+  watch( watchPath.scss, series( scssCompile ))
+  watch( watchPath.php, series( phpWatch, browserSyncReload ))
+  watch( watchPath.scss, series( phpWatch, browserSyncReload ))
 }
 
 //---------------------------------------------------------
 //  モジュール作成
 //---------------------------------------------------------
-exports.default = gulp.series(
-  gulp.parallel( watchSass, browserSyncFunc, watchPhp )
+exports.default = series(
+  parallel( phpWatch, scssCompile ),
+  parallel( watchFiles , browserSyncFunc )
 );
